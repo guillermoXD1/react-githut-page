@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/proyectoDeClase/build/static/css/main.f043fe71.css",
+    "main.js": "/proyectoDeClase/build/static/js/main.b006c1cd.js",
+    "static/js/453.78794f81.chunk.js": "/proyectoDeClase/build/static/js/453.78794f81.chunk.js",
+    "index.html": "/proyectoDeClase/build/index.html",
+    "main.f043fe71.css.map": "/proyectoDeClase/build/static/css/main.f043fe71.css.map",
+    "main.b006c1cd.js.map": "/proyectoDeClase/build/static/js/main.b006c1cd.js.map",
+    "453.78794f81.chunk.js.map": "/proyectoDeClase/build/static/js/453.78794f81.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f043fe71.css",
+    "static/js/main.b006c1cd.js"
+  ]
+}

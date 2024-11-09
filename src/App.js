@@ -1,23 +1,48 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import FormularioTarea from './FormularioTarea';
+import ListaTareas from './ListaTareas';
 import './App.css';
 
 function App() {
+  const [tareas, setTareas] = useState([]);
+
+  // Cargar tareas guardadas en localStorage al inicio
+  useEffect(() => {
+    const tareasGuardadas = JSON.parse(localStorage.getItem('tareas')) || [];
+    setTareas(tareasGuardadas);
+  }, []);
+
+  // Guardar tareas en localStorage cada vez que cambian
+  useEffect(() => {
+    localStorage.setItem('tareas', JSON.stringify(tareas));
+  }, [tareas]);
+  
+  const agregarTarea = (texto) => {
+    const nuevaTarea = { id: Date.now(), texto, completada: false};
+    setTareas([nuevaTarea, ...tareas]);
+  };
+
+  const eliminarTarea = (id) => {
+    setTareas(tareas.filter(tarea => tarea.id !== id));
+  };
+
+  const toggleCompletarTarea = (id) => {
+    setTareas(
+      tareas.map(tarea =>
+        tarea.id === id ? {...tarea, completada: !tarea.completada } : tarea
+      )
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Lista de Tareas</h1>
+      <FormularioTarea agregarTarea={agregarTarea} />
+      <ListaTareas
+        tareas={tareas}
+        eliminarTarea={eliminarTarea}
+        toggleCompletarTarea={toggleCompletarTarea}
+      />
     </div>
   );
 }
